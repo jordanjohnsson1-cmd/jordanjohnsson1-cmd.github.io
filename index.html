@@ -524,6 +524,24 @@ html.light section:nth-of-type(even){background:linear-gradient(180deg,rgba(50,4
 /* 6. Gallery center emphasis (no layout change) */
 .galstrip .gimg{will-change:transform,opacity;transform-origin:center center}
 
+/* 10. gallery autoplay controls - liquid glass (Apple carousel mechanic) */
+.galctrl{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0 0}
+.galplay{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.85);padding:0;transition:background .2s ease,transform .15s ease}
+.galplay:hover{background:rgba(255,255,255,.14)}
+.galplay:active{transform:scale(.92)}
+.galplay svg{width:13px;height:13px;display:block}
+.galplay .icon-pause{display:none}
+.galplay.playing .icon-pause{display:block}
+.galplay.playing .icon-play{display:none}
+.galdots{display:flex;align-items:center;gap:6px;padding:9px 13px;border-radius:99px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5)}
+.galdots button{display:block;width:6px;height:6px;border-radius:99px;border:0;padding:0;background:rgba(255,255,255,.30);transition:width .25s ease,background .25s ease;cursor:pointer;flex:0 0 auto}
+.galdots button.on{width:20px;background:rgba(255,255,255,.92)}
+html.light .galplay{border-color:rgba(60,50,20,.16);background:rgba(255,255,255,.55);color:rgba(40,32,10,.8)}
+html.light .galplay:hover{background:rgba(255,255,255,.75)}
+html.light .galdots{border-color:rgba(60,50,20,.12);background:rgba(255,255,255,.5)}
+html.light .galdots button{background:rgba(50,40,15,.28)}
+html.light .galdots button.on{background:rgba(40,32,10,.85)}
+
 </style>
 </head>
 <body>
@@ -668,7 +686,7 @@ html.light section:nth-of-type(even){background:linear-gradient(180deg,rgba(50,4
 <div class="gimg"><img alt="A blue dragonfly resting on sunlit stone" data-lb="photography" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/gal-dragonfly.jpg"/></div>
 
 </div>
-<div aria-hidden="true" class="galdots" id="galdots"></div>
+<div class="galctrl"><button aria-label="Pause gallery auto-scroll" class="galplay playing" id="galplay" type="button"><svg viewBox="0 0 14 14" class="icon-play" aria-hidden="true"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg><svg viewBox="0 0 14 14" class="icon-pause" aria-hidden="true"><path d="M2.5 1.5h3v11h-3zM8.5 1.5h3v11h-3z" fill="currentColor"/></svg></button><div aria-hidden="true" class="galdots" id="galdots"></div></div>
 <p class="phmore">Swipe or scroll through the gallery: tap any photo to open it full screen.</p>
 </section>
 <section class="reveal" id="music">
@@ -1138,6 +1156,39 @@ html.light section:nth-of-type(even){background:linear-gradient(180deg,rgba(50,4
       },{threshold:.25});
       twio.observe(threew);
     }
+  })();
+
+  /* 10. gallery auto-swipe every 1.5s + Apple-style glass controls */
+  (function(){
+    var strip=document.getElementById('galstrip');
+    var playBtn=document.getElementById('galplay');
+    if(!strip||!playBtn)return;
+    var gitems=strip.querySelectorAll('.gimg');
+    if(gitems.length<2)return;
+    var autoAllowed=!STATIC&&!BASIC&&!reduceMQ;
+    var paused=!autoAllowed,inView=false,holding=false,lbOpenNow=false;
+    var timer=null,resumeT=null;
+    function stride(){return gitems.length>1?(gitems[1].offsetLeft-gitems[0].offsetLeft):strip.clientWidth}
+    function curIdx(){var s=stride();return s?Math.max(0,Math.min(gitems.length-1,Math.round(strip.scrollLeft/s))):0}
+    function step(){var n=(curIdx()+1)%gitems.length;strip.scrollTo({left:n*stride(),behavior:'smooth'})}
+    function startT(){if(timer)return;timer=setInterval(function(){if(!document.hidden)step()},1500)}
+    function stopT(){if(timer){clearInterval(timer);timer=null}}
+    function canRun(){return !paused&&inView&&!holding&&!lbOpenNow&&!document.hidden}
+    function update(){if(canRun()){startT()}else{stopT()}}
+    function reflect(){playBtn.classList.toggle('playing',!paused);playBtn.setAttribute('aria-label',paused?'Play gallery auto-scroll':'Pause gallery auto-scroll')}
+    playBtn.addEventListener('click',function(){paused=!paused;reflect();update()});
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){inView=es[0].isIntersecting;update()},{threshold:.35}).observe(strip);
+    }else{inView=true}
+    strip.addEventListener('pointerdown',function(){holding=true;update()},{passive:true});
+    strip.addEventListener('pointerup',function(){if(resumeT)clearTimeout(resumeT);resumeT=setTimeout(function(){holding=false;update()},5000)},{passive:true});
+    strip.addEventListener('pointercancel',function(){holding=false;update()},{passive:true});
+    var lbEl=document.getElementById('lb');
+    if(lbEl&&'MutationObserver' in window){
+      new MutationObserver(function(){lbOpenNow=lbEl.classList.contains('open');update()}).observe(lbEl,{attributes:true,attributeFilter:['class']});
+    }
+    document.addEventListener('visibilitychange',update);
+    reflect();update();
   })();
 
   document.addEventListener('keydown',function(e){
