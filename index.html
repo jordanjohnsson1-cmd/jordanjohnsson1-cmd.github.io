@@ -603,8 +603,8 @@ html.light section:nth-of-type(even){background:linear-gradient(180deg,rgba(50,4
 <h2>Track &amp; Field</h2>
 <p class="sub2">Palo Alto High School varsity · East Palo Alto Greyhounds · Paly all-time 100m record holder · nationally ranked for the Class of 2028</p>
 <div class="prtiles">
-<a class="prtile" href="https://www.athletic.net/athlete/12524792/track-and-field/all" rel="noopener" target="_blank" title="View full results on Athletic.net"><div class="prbg" style="background-image:url('https://jordanjohnsson1-cmd.github.io/img/track-race.jpg')"></div><div class="prin"><span class="prnum">10.37</span><span class="prlab">100m &middot; SCVAL Finals &middot; Paly all-time record</span><span class="prlink">View on Athletic.net</span></div></a>
-<a class="prtile" href="https://www.athletic.net/athlete/12524792/track-and-field/all" rel="noopener" target="_blank" title="View full results on Athletic.net"><div class="prbg" style="background-image:url('https://jordanjohnsson1-cmd.github.io/img/track-stadium.jpg')"></div><div class="prin"><span class="prnum">21.40</span><span class="prlab">200m &middot; CCS Finals &middot; wind-legal</span><span class="prlink">View on Athletic.net</span></div></a>
+<a class="prtile" href="https://www.athletic.net/athlete/12524792/track-and-field/all" rel="noopener" target="_blank" title="View full results on Athletic.net"><div class="prbg"></div><div class="prin"><span class="prnum">10.37</span><span class="prlab">100m &middot; SCVAL Finals &middot; Paly all-time record</span><span class="prlink">View on Athletic.net</span></div></a>
+<a class="prtile" href="https://www.athletic.net/athlete/12524792/track-and-field/all" rel="noopener" target="_blank" title="View full results on Athletic.net"><div class="prbg"></div><div class="prin"><span class="prnum">21.40</span><span class="prlab">200m &middot; CCS Finals &middot; wind-legal</span><span class="prlink">View on Athletic.net</span></div></a>
 </div>
 
 <div class="gimg feature"><img alt="Sprinters driving through the middle of a 100m race in a packed stadium" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/track-race.jpg"/></div>
@@ -1023,9 +1023,25 @@ html.light section:nth-of-type(even){background:linear-gradient(180deg,rgba(50,4
     if(!STATIC && !BASIC && !reduceMQ && typeof items!=='undefined'){
       items.forEach(function(it){if(it.el.classList.contains('q')){qItems.push(it)}});
     }
+    /* 4b. PR tile photos come from the site's window.PHOTOS data-url map (poll until it loads) */
+    var prKeys=['track-race','track-stadium'];
+    var prBgEls=[].slice.call(document.querySelectorAll('.prtile .prbg'));
+    function setPrBgs(){
+      var done=true;
+      prBgEls.forEach(function(b,i){
+        var k=prKeys[i%prKeys.length];
+        if(window.PHOTOS&&window.PHOTOS[k]){b.style.backgroundImage='url('+window.PHOTOS[k]+')'}
+        else{done=false}
+      });
+      return done;
+    }
+    if(!setPrBgs()){
+      var prTries=0;
+      var prPoll=setInterval(function(){ if(setPrBgs()||++prTries>80){clearInterval(prPoll)} },250);
+    }
     var prBgs=[];
     if(!STATIC && !BASIC && !reduceMQ){
-      document.querySelectorAll('.prtile .prbg').forEach(function(b){prBgs.push(b)});
+      prBgEls.forEach(function(b){prBgs.push(b)});
     }
     var fxTick=false;
     function fxPass(){
