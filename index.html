@@ -541,10 +541,30 @@ html.light .galplay:hover{background:rgba(255,255,255,.75)}
 html.light .galdots{border-color:rgba(60,50,20,.12);background:rgba(255,255,255,.5)}
 html.light .galdots button{background:rgba(50,40,15,.28)}
 html.light .galdots button.on{background:rgba(40,32,10,.85)}
-.tcollage{display:grid;gap:14px;margin-top:22px;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:200px 200px}
-.tcollage .gimg{min-height:0}
-.tc-a{grid-area:1/1/3/2}.tc-b{grid-area:1/2/2/3}.tc-c{grid-area:1/3/2/4}.tc-d{grid-area:2/2/3/4}
-@media (max-width:700px){.tcollage{grid-template-columns:1fr 1fr;grid-template-rows:175px 175px 130px}.tc-a{grid-area:1/1/3/2}.tc-b{grid-area:1/2/2/3}.tc-c{grid-area:2/2/3/3}.tc-d{grid-area:3/1/4/3}}
+/* trumpet mini collage tucked in the corner of the trumpet card */
+.tmini{position:absolute;right:18px;bottom:18px;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:6px;width:126px}
+.tmini img{display:block;width:100%;aspect-ratio:1;height:auto;object-fit:cover;border-radius:11px;border:1px solid rgba(255,255,255,.16);background:rgba(22,26,34,.34);cursor:zoom-in;box-shadow:0 4px 14px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.tmini img:hover{transform:scale(1.06)}
+html.light .tmini img{border-color:rgba(50,40,15,.2);background:rgba(255,253,247,.5)}
+#music .grid>.card:has(.tmini){padding-bottom:164px}
+/* piano recital photo, centered portrait above the interactive piano */
+.pianopic{max-width:400px;margin:24px auto 0;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.11);background:rgba(22,26,34,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 14px 34px rgba(0,0,0,.22);cursor:zoom-in}
+.pianopic img{display:block;width:100%;height:auto}
+html.light .pianopic{background:rgba(255,253,247,.62);border-color:rgba(50,40,15,.14)}
+/* language cards: prominent flag hue behind the liquid glass */
+#language .card.flagbg{position:relative;overflow:hidden;isolation:isolate}
+#language .card.flagbg::before{content:'';position:absolute;inset:-12%;z-index:0;opacity:.6;filter:blur(16px) saturate(1.4)}
+#language .card.flagbg>*{position:relative;z-index:1}
+#language .card.flagde::before{background:linear-gradient(180deg,#000 0 33.4%,#dd0000 33.4% 66.7%,#ffce00 66.7% 100%)}
+#language .card.flages::before{background:linear-gradient(180deg,#aa151b 0 25%,#f1bf00 25% 75%,#aa151b 75% 100%)}
+html.light #language .card.flagbg::before{opacity:.5}
+/* record cards: full-bleed photo backgrounds under glass, edges blended */
+.recgrid .card{position:relative;overflow:hidden;isolation:isolate;background-size:cover;background-position:center}
+.recgrid .card::after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(10,12,16,.58),rgba(10,12,16,.7))}
+.recgrid .card>*{position:relative;z-index:1}
+html.light .recgrid .card::after{background:linear-gradient(180deg,rgba(255,253,247,.6),rgba(255,253,247,.72))}
+/* scroll-zoom on the large feature photo */
+.gimg.feature img.zoomscrub{transition:none!important;will-change:transform}
 
 </style>
 </head>
@@ -638,8 +658,6 @@ html.light .galdots button.on{background:rgba(40,32,10,.85)}
 <div class="imgrow2">
 <div class="gimg"><img alt="Walking the curve of the track after a workout" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/track-walk2.jpg"/></div>
 <div class="gimg"><img alt="The stadium on meet day" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/track-stadium.jpg"/></div>
-<div class="gimg"><img alt="Jordan crouched in the set position at the start of a race" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/track-set.jpg"/></div>
-<div class="gimg"><img alt="Jordan in the starting blocks moments before a race" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/track-blocks.jpg"/></div>
 </div>
 </section>
 <section class="reveal" id="sports">
@@ -699,14 +717,9 @@ html.light .galdots button.on{background:rgba(40,32,10,.85)}
 <p class="sub2">Piano since kindergarten and a paid piano coach for about four years; trumpet for three years. Music is my longest-running commitment: longer than any sport.</p>
 <p aria-hidden="true" class="swipehint">Swipe left or right through this section.</p><div class="grid">
 <div class="card"><svg aria-hidden="true" class="irender" viewbox="0 0 72 44"><rect fill="rgba(214,194,154,.07)" height="42" rx="7" stroke="rgba(214,194,154,.55)" stroke-width="1.5" width="70" x="1" y="1"></rect><line stroke="rgba(214,194,154,.4)" stroke-width="1.2" x1="19" x2="19" y1="22" y2="42"></line><line stroke="rgba(214,194,154,.4)" stroke-width="1.2" x1="36" x2="36" y1="22" y2="42"></line><line stroke="rgba(214,194,154,.4)" stroke-width="1.2" x1="53" x2="53" y1="22" y2="42"></line><rect fill="rgba(10,12,16,.92)" height="21" rx="2.5" stroke="rgba(214,194,154,.45)" width="9" x="13" y="2"></rect><rect fill="rgba(10,12,16,.92)" height="21" rx="2.5" stroke="rgba(214,194,154,.45)" width="9" x="30" y="2"></rect><rect fill="rgba(10,12,16,.92)" height="21" rx="2.5" stroke="rgba(214,194,154,.45)" width="9" x="47" y="2"></rect></svg><span class="tag g">Piano</span><h3>Player and paid coach</h3><p>Playing since kindergarten. For about four years I've worked as a paid piano coach, tutoring students ages 7 to 15 on practice habits and piano skills. Songs played include "Someone Like You" by Adele and "Circles" by Post Malone.</p></div>
-<div class="card"><svg aria-hidden="true" class="irender" viewbox="0 0 76 44"><path d="M6 22h34" stroke="rgba(214,194,154,.7)" stroke-linecap="round" stroke-width="3"></path><path d="M40 14 L68 5 v34 L40 30 Z" fill="rgba(214,194,154,.14)" stroke="rgba(214,194,154,.7)" stroke-width="1.5"></path><rect fill="rgba(214,194,154,.7)" height="9" rx="1.5" width="4" x="18" y="13"></rect><rect fill="rgba(214,194,154,.7)" height="9" rx="1.5" width="4" x="25" y="13"></rect><rect fill="rgba(214,194,154,.7)" height="9" rx="1.5" width="4" x="32" y="13"></rect></svg><span class="tag b">Trumpet</span><h3>Three years</h3><p>Working on note reading and embouchure. Most recent piece: "Higher Ground" by Stevie Wonder.</p></div>
+<div class="card"><svg aria-hidden="true" class="irender" viewbox="0 0 76 44"><path d="M6 22h34" stroke="rgba(214,194,154,.7)" stroke-linecap="round" stroke-width="3"></path><path d="M40 14 L68 5 v34 L40 30 Z" fill="rgba(214,194,154,.14)" stroke="rgba(214,194,154,.7)" stroke-width="1.5"></path><rect fill="rgba(214,194,154,.7)" height="9" rx="1.5" width="4" x="18" y="13"></rect><rect fill="rgba(214,194,154,.7)" height="9" rx="1.5" width="4" x="25" y="13"></rect><rect fill="rgba(214,194,154,.7)" height="9" rx="1.5" width="4" x="32" y="13"></rect></svg><span class="tag b">Trumpet</span><h3>Three years</h3><p>Working on note reading and embouchure. Most recent piece: "Higher Ground" by Stevie Wonder.</p><div aria-label="Trumpet photo collage" class="tmini"><img alt="Jordan playing trumpet close up, bell toward the camera, in a gray hoodie" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-1.jpg"/><img alt="Jordan standing with his trumpet at rest" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-2.jpg"/><img alt="Jordan playing trumpet in side profile" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-3.jpg"/><img alt="Jordan playing trumpet with the bell facing the camera" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-4.jpg"/></div></div>
 </div>
-<div aria-label="Trumpet photo collage" class="tcollage">
-<div class="gimg tc-a"><img alt="Jordan playing trumpet close up, bell toward the camera, in a gray hoodie" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-1.jpg"/></div>
-<div class="gimg tc-b"><img alt="Jordan standing with his trumpet at rest" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-2.jpg"/></div>
-<div class="gimg tc-c"><img alt="Jordan playing trumpet in side profile" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-3.jpg"/></div>
-<div class="gimg tc-d"><img alt="Jordan playing trumpet with the bell facing the camera" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-4.jpg"/></div>
-</div>
+<div class="pianopic"><img alt="Jordan in a black suit beside a grand piano at a piano recital" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/piano-recital.jpg"/></div>
 <div class="pianowrap">
 <div class="piano">
 <div class="wk"></div>
@@ -741,8 +754,8 @@ html.light .galdots button.on{background:rgba(40,32,10,.85)}
 <h2>Language</h2>
 <p class="sub2">German lessons since first grade and spoken with my family at home, plus five years of Spanish at school.</p>
 <p aria-hidden="true" class="swipehint">Swipe left or right through this section.</p><div class="grid">
-<div class="card"><span class="tag g">Since 1st grade</span><h3>Lessons and home life</h3><p>German lessons since first grade, and I speak German with my family. Conversational speaker: I can follow German family films like "Willkommen bei den Hartmanns" without subtitles.</p></div>
-<div class="card"><span class="tag y">5 years</span><h3>Spanish</h3><p>Five years of Spanish: three in middle school and two at Palo Alto High School, up through Spanish 3: building a third language alongside German and English.</p></div>
+<div class="card flagbg flagde"><span class="tag g">Since 1st grade</span><h3>Lessons and home life</h3><p>German lessons since first grade, and I speak German with my family. Conversational speaker: I can follow German family films like "Willkommen bei den Hartmanns" without subtitles.</p></div>
+<div class="card flagbg flages"><span class="tag y">5 years</span><h3>Spanish</h3><p>Five years of Spanish: three in middle school and two at Palo Alto High School, up through Spanish 3: building a third language alongside German and English.</p></div>
 </div>
 </section>
 <section class="reveal" id="people">
@@ -769,7 +782,7 @@ html.light .galdots button.on{background:rgba(40,32,10,.85)}
 <h2>References &amp; Press</h2>
 <p class="sub2">The records I've broken, plus coverage and official profiles, exactly as published.</p>
 <h3 class="rechead">Records</h3>
-<p aria-hidden="true" class="swipehint">Swipe left or right through this section.</p><div class="grid">
+<p aria-hidden="true" class="swipehint">Swipe left or right through this section.</p><div class="grid recgrid">
 <div class="card"><span class="tag g">School record</span><h3>Paly all-time 100m: 10.37</h3><p>Broke EJ Floreal's 10.52, which had stood for 13 years, with a 10.49 at the Saint Francis Invitational (March 2026); lowered it to 10.44 winning at the Arcadia Invitational, then to 10.37 at the SCVAL-DAL Finals.</p></div>
 <div class="card"><span class="tag g">CCS all-time record</span><h3>Fastest 100m in CCS history (tie): 10.37</h3><p>The 10.37 at league finals ties Rubin Williams' all-time Central Coast Section record, set in 2002.</p></div>
 <div class="card"><span class="tag b">CCS sophomore record</span><h3>Sophomore 100m: 10.37</h3><p>The same race also reset my own CCS sophomore 100m record.</p></div>
@@ -1069,9 +1082,27 @@ html.light .galdots button.on{background:rgba(40,32,10,.85)}
       var prTries=0;
       var prPoll=setInterval(function(){ if(setPrBgs()||++prTries>80){clearInterval(prPoll)} },250);
     }
+    /* 11. record card photo backgrounds come from the PHOTOS map too */
+    var recKeys=['press-bg-1','press-bg-2','press-bg-3','press-bg-4','track-set','track-blocks'];
+    var recCards=[].slice.call(document.querySelectorAll('.recgrid .card'));
+    function setRecBgs(){
+      var done=true;
+      recCards.forEach(function(c,i){
+        var k=recKeys[i%recKeys.length];
+        if(window.PHOTOS&&window.PHOTOS[k]){c.style.backgroundImage='url('+window.PHOTOS[k]+')'}
+        else{done=false}
+      });
+      return done;
+    }
+    if(recCards.length&&!setRecBgs()){
+      var recTries=0;
+      var recPoll=setInterval(function(){ if(setRecBgs()||++recTries>80){clearInterval(recPoll)} },250);
+    }
     var prBgs=[];
     if(!STATIC && !BASIC && !reduceMQ){
       prBgEls.forEach(function(b){prBgs.push(b)});
+      var featImg=document.querySelector('.gimg.feature img');
+      if(featImg){featImg.classList.add('zoomscrub');prBgs.push(featImg)}
     }
     /* perf: cached boxes keep the scroll handler free of layout reads; writes happen only on change */
     var qFx=qItems.map(function(it){return {el:it.el,spans:it.spans,top:0,h:0,lastN:-1}});
@@ -1168,7 +1199,7 @@ html.light .galdots button.on{background:rgba(40,32,10,.85)}
     }
   })();
 
-  /* 10. gallery auto-swipe every 1.5s + Apple-style glass controls */
+  /* 10. gallery auto-swipe every 1s + Apple-style glass controls */
   (function(){
     var strip=document.getElementById('galstrip');
     var playBtn=document.getElementById('galplay');
@@ -1181,7 +1212,7 @@ html.light .galdots button.on{background:rgba(40,32,10,.85)}
     function stride(){return gitems.length>1?(gitems[1].offsetLeft-gitems[0].offsetLeft):strip.clientWidth}
     function curIdx(){var s=stride();return s?Math.max(0,Math.min(gitems.length-1,Math.round(strip.scrollLeft/s))):0}
     function step(){var n=(curIdx()+1)%gitems.length;strip.scrollTo({left:n*stride(),behavior:'smooth'})}
-    function startT(){if(timer)return;timer=setInterval(function(){if(!document.hidden)step()},1500)}
+    function startT(){if(timer)return;timer=setInterval(function(){if(!document.hidden)step()},1000)}
     function stopT(){if(timer){clearInterval(timer);timer=null}}
     function canRun(){return !paused&&inView&&!holding&&!lbOpenNow&&!document.hidden}
     function update(){if(canRun()){startT()}else{stopT()}}
@@ -1243,8 +1274,8 @@ html.light .galdots button.on{background:rgba(40,32,10,.85)}
 <script src="p-31-00.js"></script>
 <script src="p-32-00.js"></script>
 <script src="p-33-00.js"></script>
-<script src="p-34-00.js"></script><script src="p-35-00.js"></script><script src="p-36-00.js"></script><script src="p-37-00.js"></script><script src="p-38-00.js"></script><script src="p-39-00.js"></script><script src="p-40-00.js"></script><script src="p-41-00.js"></script><script src="p-42-00.js"></script>
-<script>window.PHOTOS={};window.PHOTOS["one-of-wun-cover"]="data:image/jpeg;base64,"+window.c34;window.PHOTOS["about-track-walk"]="data:image/jpeg;base64,"+window.c0;window.PHOTOS["backflip-beach"]="data:image/jpeg;base64,"+window.c1;window.PHOTOS["gal-aerial-water"]="data:image/jpeg;base64,"+window.c2;window.PHOTOS["gal-beach-boats"]="data:image/jpeg;base64,"+window.c3;window.PHOTOS["gal-calm-sunset"]="data:image/jpeg;base64,"+window.c4;window.PHOTOS["gal-coast-sunset"]="data:image/jpeg;base64,"+window.c5;window.PHOTOS["gal-dragonfly"]="data:image/jpeg;base64,"+window.c6;window.PHOTOS["gal-jungle-hike"]="data:image/jpeg;base64,"+window.c7;window.PHOTOS["gal-sunset-shore"]="data:image/jpeg;base64,"+window.c8;window.PHOTOS["influencer-gunna"]="data:image/jpeg;base64,"+window.c9;window.PHOTOS["influencer-musiala"]="data:image/jpeg;base64,"+window.c10;window.PHOTOS["influencer-shevon"]="data:image/jpeg;base64,"+window.c11;window.PHOTOS["intuition-home"]="data:image/jpeg;base64,"+window.c12;window.PHOTOS["photo-alpine-road"]="data:image/jpeg;base64,"+window.c13;window.PHOTOS["photo-beach-silhouettes"]="data:image/jpeg;base64,"+window.c14;window.PHOTOS["photo-beach-sunset"]="data:image/jpeg;base64,"+window.c15;window.PHOTOS["photo-f1-track"]="data:image/jpeg;base64,"+window.c16;window.PHOTOS["photo-golden-hill"]="data:image/jpeg;base64,"+window.c17;window.PHOTOS["photo-green-field"]="data:image/jpeg;base64,"+window.c18;window.PHOTOS["photo-lake"]="data:image/jpeg;base64,"+window.c19;window.PHOTOS["photo-overlook-group"]="data:image/jpeg;base64,"+window.c20;window.PHOTOS["photo-plane-mountains"]="data:image/jpeg;base64,"+window.c21;window.PHOTOS["photo-pyramid"]="data:image/jpeg;base64,"+window.c22;window.PHOTOS["photo-stadium-lights"]="data:image/jpeg;base64,"+window.c23;window.PHOTOS["photo-valley"]="data:image/jpeg;base64,"+window.c24;window.PHOTOS["press-paly-voice"]="data:image/jpeg;base64,"+window.c25;window.PHOTOS["press-verde"]="data:image/jpeg;base64,"+window.c26;window.PHOTOS["press-viking"]="data:image/jpeg;base64,"+window.c27;window.PHOTOS["projects-boards"]="data:image/jpeg;base64,"+window.c28;window.PHOTOS["soccer-striker"]="data:image/jpeg;base64,"+window.c29;window.PHOTOS["swim-fly"]="data:image/jpeg;base64,"+window.c30;window.PHOTOS["track-race"]="data:image/jpeg;base64,"+window.c31;window.PHOTOS["track-stadium"]="data:image/jpeg;base64,"+window.c32;window.PHOTOS["track-walk2"]="data:image/jpeg;base64,"+window.c33;window.PHOTOS["pr-100m"]="data:image/jpeg;base64,"+window.c35;window.PHOTOS["pr-200m"]="data:image/jpeg;base64,"+window.c36;window.PHOTOS["track-set"]="data:image/jpeg;base64,"+window.c37;window.PHOTOS["track-blocks"]="data:image/jpeg;base64,"+window.c38;window.PHOTOS["trumpet-1"]="data:image/jpeg;base64,"+window.c39;window.PHOTOS["trumpet-2"]="data:image/jpeg;base64,"+window.c40;window.PHOTOS["trumpet-3"]="data:image/jpeg;base64,"+window.c41;window.PHOTOS["trumpet-4"]="data:image/jpeg;base64,"+window.c42;document.querySelectorAll('img').forEach(function(e){var k=((e.getAttribute('src')||'').split('/').pop()||'').replace(/\.[^.]+$/,'');if(PHOTOS[k]){var u=PHOTOS[k],o=new Image();o.onload=(function(el,src){return function(){el.src=src}})(e,u);o.src=u}});if(window.LBPHOTOS)window.LBPHOTOS=window.LBPHOTOS.map(function(x){var k=(x.split('/').pop()||'').replace(/\.[^.]+$/,'');return PHOTOS[k]||x});</script>
+<script src="p-34-00.js"></script><script src="p-35-00.js"></script><script src="p-36-00.js"></script><script src="p-37-00.js"></script><script src="p-38-00.js"></script><script src="p-39-00.js"></script><script src="p-40-00.js"></script><script src="p-41-00.js"></script><script src="p-42-00.js"></script><script src="p-43-00.js"></script><script src="p-44-00.js"></script><script src="p-45-00.js"></script><script src="p-46-00.js"></script><script src="p-47-00.js"></script>
+<script>window.PHOTOS={};window.PHOTOS["one-of-wun-cover"]="data:image/jpeg;base64,"+window.c34;window.PHOTOS["about-track-walk"]="data:image/jpeg;base64,"+window.c0;window.PHOTOS["backflip-beach"]="data:image/jpeg;base64,"+window.c1;window.PHOTOS["gal-aerial-water"]="data:image/jpeg;base64,"+window.c2;window.PHOTOS["gal-beach-boats"]="data:image/jpeg;base64,"+window.c3;window.PHOTOS["gal-calm-sunset"]="data:image/jpeg;base64,"+window.c4;window.PHOTOS["gal-coast-sunset"]="data:image/jpeg;base64,"+window.c5;window.PHOTOS["gal-dragonfly"]="data:image/jpeg;base64,"+window.c6;window.PHOTOS["gal-jungle-hike"]="data:image/jpeg;base64,"+window.c7;window.PHOTOS["gal-sunset-shore"]="data:image/jpeg;base64,"+window.c8;window.PHOTOS["influencer-gunna"]="data:image/jpeg;base64,"+window.c9;window.PHOTOS["influencer-musiala"]="data:image/jpeg;base64,"+window.c10;window.PHOTOS["influencer-shevon"]="data:image/jpeg;base64,"+window.c11;window.PHOTOS["intuition-home"]="data:image/jpeg;base64,"+window.c12;window.PHOTOS["photo-alpine-road"]="data:image/jpeg;base64,"+window.c13;window.PHOTOS["photo-beach-silhouettes"]="data:image/jpeg;base64,"+window.c14;window.PHOTOS["photo-beach-sunset"]="data:image/jpeg;base64,"+window.c15;window.PHOTOS["photo-f1-track"]="data:image/jpeg;base64,"+window.c16;window.PHOTOS["photo-golden-hill"]="data:image/jpeg;base64,"+window.c17;window.PHOTOS["photo-green-field"]="data:image/jpeg;base64,"+window.c18;window.PHOTOS["photo-lake"]="data:image/jpeg;base64,"+window.c19;window.PHOTOS["photo-overlook-group"]="data:image/jpeg;base64,"+window.c20;window.PHOTOS["photo-plane-mountains"]="data:image/jpeg;base64,"+window.c21;window.PHOTOS["photo-pyramid"]="data:image/jpeg;base64,"+window.c22;window.PHOTOS["photo-stadium-lights"]="data:image/jpeg;base64,"+window.c23;window.PHOTOS["photo-valley"]="data:image/jpeg;base64,"+window.c24;window.PHOTOS["press-paly-voice"]="data:image/jpeg;base64,"+window.c25;window.PHOTOS["press-verde"]="data:image/jpeg;base64,"+window.c26;window.PHOTOS["press-viking"]="data:image/jpeg;base64,"+window.c27;window.PHOTOS["projects-boards"]="data:image/jpeg;base64,"+window.c28;window.PHOTOS["soccer-striker"]="data:image/jpeg;base64,"+window.c29;window.PHOTOS["swim-fly"]="data:image/jpeg;base64,"+window.c30;window.PHOTOS["track-race"]="data:image/jpeg;base64,"+window.c31;window.PHOTOS["track-stadium"]="data:image/jpeg;base64,"+window.c32;window.PHOTOS["track-walk2"]="data:image/jpeg;base64,"+window.c33;window.PHOTOS["pr-100m"]="data:image/jpeg;base64,"+window.c35;window.PHOTOS["pr-200m"]="data:image/jpeg;base64,"+window.c36;window.PHOTOS["track-set"]="data:image/jpeg;base64,"+window.c37;window.PHOTOS["track-blocks"]="data:image/jpeg;base64,"+window.c38;window.PHOTOS["trumpet-1"]="data:image/jpeg;base64,"+window.c39;window.PHOTOS["trumpet-2"]="data:image/jpeg;base64,"+window.c40;window.PHOTOS["trumpet-3"]="data:image/jpeg;base64,"+window.c41;window.PHOTOS["trumpet-4"]="data:image/jpeg;base64,"+window.c42;window.PHOTOS["piano-recital"]="data:image/jpeg;base64,"+window.c43;window.PHOTOS["press-bg-1"]="data:image/jpeg;base64,"+window.c44;window.PHOTOS["press-bg-2"]="data:image/jpeg;base64,"+window.c45;window.PHOTOS["press-bg-3"]="data:image/jpeg;base64,"+window.c46;window.PHOTOS["press-bg-4"]="data:image/jpeg;base64,"+window.c47;document.querySelectorAll('img').forEach(function(e){var k=((e.getAttribute('src')||'').split('/').pop()||'').replace(/\.[^.]+$/,'');if(PHOTOS[k]){var u=PHOTOS[k],o=new Image();o.onload=(function(el,src){return function(){el.src=src}})(e,u);o.src=u}});if(window.LBPHOTOS)window.LBPHOTOS=window.LBPHOTOS.map(function(x){var k=(x.split('/').pop()||'').replace(/\.[^.]+$/,'');return PHOTOS[k]||x});</script>
 <style>.cardart{position:relative;width:100%;height:94px;margin:-5px 0 15px;border-radius:15px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.035));box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 10px 24px rgba(0,0,0,.14);display:grid;place-items:center}.cardart img{width:100%;height:100%;object-fit:cover}.cardart.logoart{padding:8px}.cardart.logoart img{object-fit:contain}.mark{font-weight:800;text-align:center;line-height:.9;letter-spacing:-.05em}.paly-mark{font-family:Georgia;color:#fff;font-size:42px;text-shadow:0 2px 12px #000}.paly-mark small{display:block;font:600 9px Inter;letter-spacing:.2em;color:#d9e8de;margin-top:7px}.usatf-mark{font-style:italic;color:#eaeff6;font-size:28px}.usatf-mark b{color:#d84b52}.usatf-mark small{display:block;font:600 8px Inter;letter-spacing:.17em;margin-top:6px}.cspan-mark{font:800 31px Arial;color:#e8effb;letter-spacing:-.07em}.cspan-mark b{color:#1f6fce}.jarvis-mark{background:radial-gradient(circle,#9ef5ff22 0 14%,transparent 15%),repeating-radial-gradient(circle,#65ddeb55 0 1px,transparent 2px 13px),linear-gradient(135deg,#07151d,#183141);color:#8ceaf5;font:600 19px monospace;letter-spacing:.22em;text-shadow:0 0 12px #64e9ff}.langcard{isolation:isolate}.langflag{position:absolute;z-index:-1;inset:0;opacity:.15;border-radius:inherit;overflow:hidden}.langflag:after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,#0c0f16dd,#0c0f1655,#0c0f16aa);backdrop-filter:blur(4px)}.langflag svg{width:100%;height:100%}.langcard>*:not(.langflag){position:relative;z-index:1}@media(max-width:700px){#track>.grid>.card:has(.cardart),#stem>.grid>.card:has(.cardart){padding:17px;min-height:315px}}</style><style>.cardart.logoart{position:relative!important}.cardart.logoart img{position:absolute!important;inset:8px!important;display:block!important;width:calc(100% - 16px)!important;height:calc(100% - 16px)!important;max-width:none!important;max-height:none!important;margin:0!important;object-fit:contain!important;object-position:center!important}</style><style>
 #track>.grid>.card:has(.bgart){isolation:isolate;overflow:hidden;padding:25px!important;min-height:315px}
 #track .bgart{position:absolute!important;inset:0!important;width:auto!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;border-radius:inherit!important;box-shadow:none!important;background:none!important;display:block!important;z-index:0!important;pointer-events:none}
