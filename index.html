@@ -547,14 +547,17 @@ html.light .galdots button.on{background:rgba(40,32,10,.85)}
 .tmini img:hover{transform:scale(1.06)}
 html.light .tmini img{border-color:rgba(50,40,15,.2);background:rgba(255,253,247,.5)}
 #music .grid>.card:has(.tmini){padding-bottom:164px}
-/* piano recital photo, centered portrait above the interactive piano */
-.pianopic{max-width:400px;margin:24px auto 0;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.11);background:rgba(22,26,34,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 14px 34px rgba(0,0,0,.22);cursor:zoom-in}
-.pianopic img{display:block;width:100%;height:auto}
-html.light .pianopic{background:rgba(255,253,247,.62);border-color:rgba(50,40,15,.14)}
+/* piano recital photo, tucked in the corner of the Piano card like the trumpet collage */
+.pianopic{position:absolute;right:22px;bottom:22px;width:126px;border-radius:11px;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:rgba(22,26,34,.34);box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:zoom-in;z-index:2}
+.pianopic img{display:block;width:100%;aspect-ratio:3/4;height:auto;object-fit:cover;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.pianopic img:hover{transform:scale(1.06)}
+html.light .pianopic{border-color:rgba(50,40,15,.2);background:rgba(255,253,247,.5)}
+#music .grid>.card:has(.pianopic){padding-bottom:212px}
 /* language cards: prominent flag hue behind the liquid glass */
 #language .card.flagbg{position:relative;overflow:hidden;isolation:isolate}
 #language .card.flagbg::before{content:'';position:absolute;inset:-12%;z-index:0;opacity:.6;filter:blur(16px) saturate(1.4)}
 #language .card.flagbg>*{position:relative;z-index:1}
+#language .card.flagbg>.langflag{position:absolute;inset:0;z-index:0}
 #language .card.flagde::before{background:linear-gradient(180deg,#000 0 33.4%,#dd0000 33.4% 66.7%,#ffce00 66.7% 100%)}
 #language .card.flages::before{background:linear-gradient(180deg,#aa151b 0 25%,#f1bf00 25% 75%,#aa151b 75% 100%)}
 html.light #language .card.flagbg::before{opacity:.5}
@@ -716,10 +719,9 @@ html.light .recgrid .card::after{background:linear-gradient(180deg,rgba(255,253,
 <h2>Piano &amp; Trumpet</h2>
 <p class="sub2">Piano since kindergarten and a paid piano coach for about four years; trumpet for three years. Music is my longest-running commitment: longer than any sport.</p>
 <p aria-hidden="true" class="swipehint">Swipe left or right through this section.</p><div class="grid">
-<div class="card"><svg aria-hidden="true" class="irender" viewbox="0 0 72 44"><rect fill="rgba(214,194,154,.07)" height="42" rx="7" stroke="rgba(214,194,154,.55)" stroke-width="1.5" width="70" x="1" y="1"></rect><line stroke="rgba(214,194,154,.4)" stroke-width="1.2" x1="19" x2="19" y1="22" y2="42"></line><line stroke="rgba(214,194,154,.4)" stroke-width="1.2" x1="36" x2="36" y1="22" y2="42"></line><line stroke="rgba(214,194,154,.4)" stroke-width="1.2" x1="53" x2="53" y1="22" y2="42"></line><rect fill="rgba(10,12,16,.92)" height="21" rx="2.5" stroke="rgba(214,194,154,.45)" width="9" x="13" y="2"></rect><rect fill="rgba(10,12,16,.92)" height="21" rx="2.5" stroke="rgba(214,194,154,.45)" width="9" x="30" y="2"></rect><rect fill="rgba(10,12,16,.92)" height="21" rx="2.5" stroke="rgba(214,194,154,.45)" width="9" x="47" y="2"></rect></svg><span class="tag g">Piano</span><h3>Player and paid coach</h3><p>Playing since kindergarten. For about four years I've worked as a paid piano coach, tutoring students ages 7 to 15 on practice habits and piano skills. Songs played include "Someone Like You" by Adele and "Circles" by Post Malone.</p></div>
+<div class="card"><svg aria-hidden="true" class="irender" viewbox="0 0 72 44"><rect fill="rgba(214,194,154,.07)" height="42" rx="7" stroke="rgba(214,194,154,.55)" stroke-width="1.5" width="70" x="1" y="1"></rect><line stroke="rgba(214,194,154,.4)" stroke-width="1.2" x1="19" x2="19" y1="22" y2="42"></line><line stroke="rgba(214,194,154,.4)" stroke-width="1.2" x1="36" x2="36" y1="22" y2="42"></line><line stroke="rgba(214,194,154,.4)" stroke-width="1.2" x1="53" x2="53" y1="22" y2="42"></line><rect fill="rgba(10,12,16,.92)" height="21" rx="2.5" stroke="rgba(214,194,154,.45)" width="9" x="13" y="2"></rect><rect fill="rgba(10,12,16,.92)" height="21" rx="2.5" stroke="rgba(214,194,154,.45)" width="9" x="30" y="2"></rect><rect fill="rgba(10,12,16,.92)" height="21" rx="2.5" stroke="rgba(214,194,154,.45)" width="9" x="47" y="2"></rect></svg><span class="tag g">Piano</span><h3>Player and paid coach</h3><p>Playing since kindergarten. For about four years I've worked as a paid piano coach, tutoring students ages 7 to 15 on practice habits and piano skills. Songs played include "Someone Like You" by Adele and "Circles" by Post Malone.</p><div class="pianopic"><img alt="Jordan in a black suit beside a grand piano at a piano recital" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/piano-recital.jpg"/></div></div>
 <div class="card"><svg aria-hidden="true" class="irender" viewbox="0 0 76 44"><path d="M6 22h34" stroke="rgba(214,194,154,.7)" stroke-linecap="round" stroke-width="3"></path><path d="M40 14 L68 5 v34 L40 30 Z" fill="rgba(214,194,154,.14)" stroke="rgba(214,194,154,.7)" stroke-width="1.5"></path><rect fill="rgba(214,194,154,.7)" height="9" rx="1.5" width="4" x="18" y="13"></rect><rect fill="rgba(214,194,154,.7)" height="9" rx="1.5" width="4" x="25" y="13"></rect><rect fill="rgba(214,194,154,.7)" height="9" rx="1.5" width="4" x="32" y="13"></rect></svg><span class="tag b">Trumpet</span><h3>Three years</h3><p>Working on note reading and embouchure. Most recent piece: "Higher Ground" by Stevie Wonder.</p><div aria-label="Trumpet photo collage" class="tmini"><img alt="Jordan playing trumpet close up, bell toward the camera, in a gray hoodie" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-1.jpg"/><img alt="Jordan standing with his trumpet at rest" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-2.jpg"/><img alt="Jordan playing trumpet in side profile" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-3.jpg"/><img alt="Jordan playing trumpet with the bell facing the camera" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/trumpet-4.jpg"/></div></div>
 </div>
-<div class="pianopic"><img alt="Jordan in a black suit beside a grand piano at a piano recital" data-lb="" loading="lazy" src="https://jordanjohnsson1-cmd.github.io/img/piano-recital.jpg"/></div>
 <div class="pianowrap">
 <div class="piano">
 <div class="wk"></div>
