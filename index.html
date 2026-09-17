@@ -950,7 +950,7 @@ html.light .recgrid .card::after{background:linear-gradient(180deg,rgba(255,253,
     });
     // safety net: even if a timer gets throttled, no text stays hidden
     setTimeout(function(){
-      items.forEach(function(it){if(!it.el.classList.contains('q')){it.spans.forEach(function(sp){sp.classList.add('on')})}});
+      items.forEach(function(it){it.spans.forEach(function(sp){sp.classList.add('on')})});
       document.querySelectorAll('.twc').forEach(function(c){c.remove()});
     },20000);
   }
